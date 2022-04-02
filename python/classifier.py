@@ -1,4 +1,4 @@
-  # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 """
 Exercise 2: A basic Brain-Computer Interface
 =============================================
@@ -105,3 +105,57 @@ if __name__ == "__main__":
 
     [classifier, mu_ft, std_ft] = BCIw.train_classifier(
             feat_matrix0, feat_matrix1, 'SVM')
+
+   # BCIw.beep()
+
+    """ 5. USE THE CLASSIFIER IN REAL-TIME"""
+
+    # Initialize the buffers for storing raw EEG and decisions
+    eeg_buffer = np.zeros((int(fs * buffer_length), n_channels))
+    filter_state = None  # for use with the notch filter
+    decision_buffer = np.zeros((30, 1))
+
+    plotter_decision = BCIw.DataPlotter(30, ['Decision'])
+
+    # The try/except structure allows to quit the while loop by aborting the
+    # script with <Ctrl-C>
+    print('Press Ctrl-C in the console to break the while loop.')
+
+    try:
+        while True:
+
+            """ 3.1 ACQUIRE DATA """
+            # Obtain EEG data from the LSL stream
+            eeg_data, timestamp = inlet.pull_chunk(
+                    timeout=1, max_samples=int(shift_length * fs))
+
+            # Only keep the channel we're interested in
+            ch_data = np.array(eeg_data)[:, index_channel]
+
+            # Update EEG buffer
+            eeg_buffer, filter_state = BCIw.update_buffer(
+                    eeg_buffer, ch_data, notch=True,
+                    filter_state=filter_state)
+
+            """ 3.2 COMPUTE FEATURES AND CLASSIFY """
+            # Get newest samples from the buffer
+            data_epoch = BCIw.get_last_data(eeg_buffer,
+                                            epoch_length * fs)
+
+            # Compute features
+            feat_vector = BCIw.compute_feature_vector(data_epoch, fs)
+            y_hat = BCIw.test_classifier(classifier,
+                                         feat_vector.reshape(1, -1), mu_ft,
+                                         std_ft)
+            print(y_hat)
+
+            decision_buffer, _ = BCIw.update_buffer(decision_buffer,
+                                                    np.reshape(y_hat, (-1, 1)))
+
+            """ 3.3 VISUALIZE THE DECISIONS """
+            plotter_decision.update_plot(decision_buffer)
+            plt.pause(0.00001)
+
+    except KeyboardInterrupt:
+
+        print('Closed!')
