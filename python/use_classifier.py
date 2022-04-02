@@ -12,6 +12,7 @@ std_fileName = "std.pkl"
 classifier = joblib.load(model_fileName)
 mu_ft = load(open(mu_fileName, 'rb'))
 std_ft = load(open(std_fileName, 'rb'))
+
 """ 1. CONNECT TO EEG STREAM """
 # Search for active LSL stream
 print('Looking for an EEG stream...')
@@ -100,10 +101,11 @@ while True:
     y_hat = BCIw.test_classifier(classifier,
                                     feat_vector.reshape(1, -1), mu_ft,
                                     std_ft)
-    print(y_hat) #prints 1 or 0 based on decision
+    
+    # print(y_hat) #prints 1 or 0 based on decision
 
-    decision_buffer, _ = BCIw.update_buffer(decision_buffer,
-                                            np.reshape(y_hat, (-1, 1)))
+    # decision_buffer, _ = BCIw.update_buffer(decision_buffer,
+    #                                         np.reshape(y_hat, (-1, 1)))
 
             # """ 3.3 VISUALIZE THE DECISIONS """
             # plotter_decision.update_plot(decision_buffer)
