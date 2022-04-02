@@ -1,4 +1,3 @@
-from flask import Flask
 from copyreg import pickle
 import numpy as np  # Module that simplifies computations on matrices
 import matplotlib.pyplot as plt  # Module used for plotting
@@ -14,23 +13,15 @@ classifier = joblib.load(model_fileName)
 mu_ft = load(open(mu_fileName, 'rb'))
 std_ft = load(open(std_fileName, 'rb'))
 
-# Flask Setup
-app = Flask(__name__)
-
-def get_focus():
-    return focus
-
-focus = True
-
 """ 1. CONNECT TO EEG STREAM """
 # Search for active LSL stream
-# print('Looking for an EEG stream...')
+print('Looking for an EEG stream...')
 streams = resolve_byprop('type', 'EEG', timeout=2)
 if len(streams) == 0:
     raise RuntimeError('Can\'t find EEG stream.')
 
 # Set active EEG stream to inlet and apply time correction
-# print("Start acquiring data")
+print("Start acquiring data")
 inlet = StreamInlet(streams[0], max_chunklen=12)
 eeg_time_correction = inlet.time_correction()
 
@@ -78,11 +69,11 @@ eeg_buffer = np.zeros((int(fs * buffer_length), n_channels))
 filter_state = None  # for use with the notch filter
 decision_buffer = np.zeros((30, 1))
 
-# plotter_decision = BCIw.DataPlotter(30, ['Decision'])
+plotter_decision = BCIw.DataPlotter(30, ['Decision'])
 
     # The try/except structure allows to quit the while loop by aborting the
     # script with <Ctrl-C>
-# print('Press Ctrl-C in the console to break the while loop.')
+print('Press Ctrl-C in the console to break the while loop.')
 
 # try:
 while True:
@@ -110,8 +101,6 @@ while True:
     y_hat = BCIw.test_classifier(classifier,
                                     feat_vector.reshape(1, -1), mu_ft,
                                     std_ft)
-                                    
-    focus = bool(y_hat)
     
     # print(y_hat) #prints 1 or 0 based on decision
 
