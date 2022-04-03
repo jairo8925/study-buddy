@@ -4,6 +4,13 @@ import muse from '../apis/muse';
 
 const Prompt = ({ onTaskSubmit }) => {
   const onClickSubmit = (e) => {
+    const task = e.target[0].value;
+    const duration = e.target[1].value;
+    if (!task || Number.isInteger(duration) || duration <= 0) {
+      e.preventDefault();
+      alert('Please input a valid task and/or duration');
+      return;
+    }
     startFocus();
     e.preventDefault();
     onTaskSubmit(e.target[0].value, e.target[1].value);
