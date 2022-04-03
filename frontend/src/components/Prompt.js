@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col, Button, FormControl } from 'react-bootstrap';
 import muse from '../apis/muse';
 
 const Prompt = ({ onTaskSubmit }) => {
@@ -20,7 +20,40 @@ const Prompt = ({ onTaskSubmit }) => {
     await muse.get('/start_focus');
   };
 
+  const connectMuse = async (e) => {
+    await muse.post('/connect_muse', null, {
+      params: {
+        id: e
+      }
+    });
+  };
+
+  const onConnectSubmit = (e) =>{
+      const id = e.target[0].value;
+      e.preventDefault();
+      connectMuse(id);
+  }
   return (
+    <div>
+    <div style={{
+      margin: '40px 280px 20px 280px',
+      backgroundColor: '#f9f6f2',
+      border: '2px solid #434C56',
+    }}>
+    <div style={{ padding: '30px' }}>
+    <Form onSubmit={onConnectSubmit}>
+    <Form.Group className="mb-3">
+            <Form.Label>Muse ID</Form.Label>
+            <Form.Control type="id" placeholder=""/>
+          </Form.Group>
+          <Col xs="auto" className="my-1">
+            <Button variant="secondary" type="submit">
+              Connect
+            </Button>
+          </Col>
+    </Form>
+    </div>
+    </div>
     <div
       style={{
         margin: '40px 280px 20px 280px',
@@ -46,6 +79,7 @@ const Prompt = ({ onTaskSubmit }) => {
           </Col>
         </Form>
       </div>
+    </div>
     </div>
   );
 };
