@@ -205,7 +205,7 @@ def train_classifier(feature_matrix_0, feature_matrix_1, algorithm='SVM'):
 
     # Train SVM using default parameters
     clf = svm.SVC()
-    clf.fit(X, y)
+    clf.fit(X, y.ravel()) #ravel flattens array
 
     # Visualize decision boundary
 #    plot_classifier_training(clf, X, y, features_to_plot=[0, 1])
@@ -221,7 +221,7 @@ def test_classifier(clf, feature_vector, mu_ft, std_ft):
         feature_vector (numpy.ndarray): array of shape (n_samples,
             n_features)
         mu_ft (numpy.ndarray): normalization mean
-        std_ft (numpy.ndarray): normalization standard deviation
+        std_ft (numpy.ndarray): normalization standard deviation    
 
     Returns:
         (numpy.ndarray): decision of the classifier on the data points
