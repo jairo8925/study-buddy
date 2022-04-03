@@ -15,10 +15,17 @@ const App = () => {
   const [results, setResults] = useState([]);
   const [lastResult, setLastResult] = useState([]);
   const [show, setShow] = useState(false);
+  const [timeStarted, setTimeStarted] = useState(new Date());
 
   const onFinish = (secondsFocused, secondsDistracted) => {
     setBusy(false);
-    const res = [task, duration, secondsFocused, secondsDistracted];
+    const res = [
+      task,
+      duration,
+      secondsFocused,
+      secondsDistracted,
+      timeStarted,
+    ];
     setResults([...results, res]);
     setLastResult(res);
     setShow(true);
@@ -28,6 +35,7 @@ const App = () => {
     setBusy(true);
     setTask(taskInput);
     setDuration(durationInput);
+    setTimeStarted(new Date());
   };
 
   const handleClose = () => {

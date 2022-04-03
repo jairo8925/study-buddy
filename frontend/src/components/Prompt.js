@@ -10,8 +10,8 @@ const Prompt = ({ onTaskSubmit }) => {
   };
 
   const startFocus = async (e) => {
-    const response = await muse.get('/start_focus');
-  }
+    await muse.get('/start_focus');
+  };
 
   return (
     <div

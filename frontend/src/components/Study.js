@@ -28,11 +28,11 @@ const Study = ({ task, duration, onFinish }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       if (focused) {
-        setSecondsFocused(secondsFocused + 5);
+        setSecondsFocused(secondsFocused + 1);
       } else {
-        setSecondsDistracted(secondsDistracted + 5);
+        setSecondsDistracted(secondsDistracted + 1);
       }
-    }, 5000);
+    }, 1000);
     return () => {
       clearInterval(interval);
     };
@@ -71,9 +71,17 @@ const Study = ({ task, duration, onFinish }) => {
         <Button
           variant={paused ? 'outline-secondary' : 'secondary'}
           onClick={onBeatsClick}
+          style={{ marginRight: '10px' }}
         >
           {paused ? 'get focused' : 'stop the sound'}
         </Button>
+        <Button
+          variant="outline-danger"
+          onClick={onTaskFinish}
+          style={{ marginLeft: '10px' }}
+        >
+          end
+        </Button>{' '}
       </div>
     </div>
   );

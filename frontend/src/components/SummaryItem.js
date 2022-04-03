@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -22,6 +22,18 @@ const SummaryItem = ({ setModal, handleClose, result }) => {
         <Modal.Body style={{ fontSize: '13px' }}>
           <p>
             Task: <i style={{ color: '#2f4f4f' }}>{result[0]}</i>
+          </p>
+          <p>
+            Time Started:{' '}
+            <i style={{ color: '#2f4f4f' }}>
+              {result[4]
+                .toLocaleString('en-US', {
+                  hour: 'numeric',
+                  minute: 'numeric',
+                  hour12: true,
+                })
+                .toLowerCase()}{' '}
+            </i>
           </p>
           <p>
             Duration: <i style={{ color: '#2f4f4f' }}>{result[1]} minutes</i>

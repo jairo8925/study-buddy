@@ -6,8 +6,16 @@ const SummaryList = ({ results }) => {
     return res.map((task, index) => {
       return (
         <tr key={index}>
-          <td>{index + 1}</td>
           <td>{task[0]}</td>
+          <td>
+            {task[4]
+              .toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true,
+              })
+              .toLowerCase()}
+          </td>
           <td>{task[1]}</td>
           <td>{task[2]}</td>
           <td>{task[3]}</td>
@@ -29,8 +37,8 @@ const SummaryList = ({ results }) => {
         <Table striped bordered hover style={{ fontSize: '10px' }}>
           <thead>
             <tr>
-              <th>#</th>
               <th>Task</th>
+              <th>Time Started</th>
               <th>Duration (min)</th>
               <th>Time focused (s)</th>
               <th>Time not focused (s)</th>
