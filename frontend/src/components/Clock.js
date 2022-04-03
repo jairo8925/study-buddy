@@ -13,6 +13,8 @@ const Clock = () => {
 
   return (
     <p className="text-center">
+      <i class="bi-clock"></i>
+      &nbsp;&nbsp;
       {time.toLocaleString('en-US', {
         hour: 'numeric',
         minute: 'numeric',

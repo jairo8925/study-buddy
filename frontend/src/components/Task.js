@@ -6,7 +6,7 @@ const Task = ({ task, duration, onTaskFinish }) => {
 
   useEffect(() => {
     const interval = setInterval(() => setTime(time - 1), 60000);
-    if (time < 0) {
+    if (time <= 0) {
       setFinished(true);
     }
     return () => {
@@ -16,18 +16,12 @@ const Task = ({ task, duration, onTaskFinish }) => {
 
   if (finished) {
     onTaskFinish();
-    return (
-      <p className="text-center">
-        {task} <br />
-        Finished!
-      </p>
-    );
+    return <p className="text-lg-center">{task} &bull; Finished!</p>;
   }
 
   return (
-    <p className="text-center">
-      {task} <br />
-      {time} {time !== 1 ? 'minutes' : 'minute'} left
+    <p className="text-lg-center" style={{ fontSize: '19px' }}>
+      {task} &bull; {time} {time !== 1 ? 'minutes' : 'minute'} left
     </p>
   );
 };

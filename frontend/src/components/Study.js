@@ -7,7 +7,7 @@ import './Study.css';
 
 const Study = ({ task, duration, onFinish }) => {
   // Data we get from the muse (Focused or not focused)
-  const [focused, setFocused] = useState(true);
+  const [focused, setFocused] = useState(false);
 
   useEffect(() => {
     getFocused();
@@ -15,7 +15,7 @@ const Study = ({ task, duration, onFinish }) => {
 
   const getFocused = () => {
     // TODO: Change the time interval.
-    const interval = setInterval(() => callMuse(), 60000);
+    const interval = setInterval(() => callMuse(), 5000);
     return () => {
       clearInterval(interval);
     };
@@ -35,18 +35,18 @@ const Study = ({ task, duration, onFinish }) => {
       <Clock duration={duration} />
       <h4 className="text-center">
         You are currently{' '}
-        <span className={focused ? 'focused' : 'distracted'}>
+        <b className={focused ? 'focused' : 'distracted'}>
           {focused ? 'focused' : 'not focused'}
-        </span>
+        </b>
       </h4>
       <div className="text-center">
-        <Task task={task} duration={duration} onTaskFinish={onTaskFinish} />
         <Image
           src="./lofiMuse.jpg"
           className="fluid rounded shadow-2-strong"
           alt="LoFi Muse"
-          style={{ maxWidth: '27rem' }}
+          style={{ maxWidth: '27rem', marginBottom: '13px' }}
         ></Image>
+        <Task task={task} duration={duration} onTaskFinish={onTaskFinish} />
       </div>
     </div>
   );
