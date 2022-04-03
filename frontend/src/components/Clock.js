@@ -12,15 +12,16 @@ const Clock = () => {
   }, []);
 
   return (
-    <p className="text-center">
-      <i class="bi-clock"></i>
+    <h1 style={{ textAlign: 'right', fontSize: '27px' }}>
       &nbsp;&nbsp;
-      {time.toLocaleString('en-US', {
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true,
-      })}
-    </p>
+      {time
+        .toLocaleString('en-US', {
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        })
+        .toLowerCase()}
+    </h1>
   );
 };
 

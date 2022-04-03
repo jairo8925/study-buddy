@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Clock from './Clock';
+import React, { useState, useEffect, useCallback } from 'react';
 import Task from './Task';
 import Image from 'react-bootstrap/Image';
 import muse from '../apis/muse';
@@ -9,30 +8,25 @@ const Study = ({ task, duration, onFinish }) => {
   // Data we get from the muse (Focused or not focused)
   const [focused, setFocused] = useState(false);
 
-  useEffect(() => {
-    getFocused();
-  });
+  const callMuse = useCallback(async () => {
+    const response = await muse.get('/focus');
+    setFocused(response.data.state);
+  }, []);
 
-  const getFocused = () => {
-    // TODO: Change the time interval.
+  useEffect(() => {
+    callMuse();
     const interval = setInterval(() => callMuse(), 5000);
     return () => {
       clearInterval(interval);
     };
-  };
-
-  const callMuse = async () => {
-    const response = await muse.get('/focus');
-    setFocused(response.data.state);
-  };
+  }, [callMuse]);
 
   const onTaskFinish = () => {
     onFinish();
   };
 
   return (
-    <div>
-      <Clock duration={duration} />
+    <div style={{ marginTop: '35px' }}>
       <h4 className="text-center">
         You are currently{' '}
         <b className={focused ? 'focused' : 'distracted'}>
@@ -44,7 +38,7 @@ const Study = ({ task, duration, onFinish }) => {
           src="./lofiMuse.jpg"
           className="fluid rounded shadow-2-strong"
           alt="LoFi Muse"
-          style={{ maxWidth: '27rem', marginBottom: '13px' }}
+          style={{ maxWidth: '27rem', marginBottom: '13px', marginTop: '8px' }}
         ></Image>
         <Task task={task} duration={duration} onTaskFinish={onTaskFinish} />
       </div>

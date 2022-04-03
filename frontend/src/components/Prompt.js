@@ -10,21 +10,31 @@ const Prompt = ({ onTaskSubmit }) => {
   };
 
   return (
-    <div>
-      <Form onSubmit={onClickSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>What's your task?</Form.Label>
-          <Form.Control type="task" placeholder="" />
-        </Form.Group>
+    <div
+      style={{
+        margin: '50px 300px 20px 300px',
+        backgroundColor: '#f9f6f2',
+        border: '2px solid #434C56',
+      }}
+    >
+      <div style={{ padding: '30px' }}>
+        <Form onSubmit={onClickSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>What's your task?</Form.Label>
+            <Form.Control type="task" placeholder="" />
+          </Form.Group>
 
-        <Form.Group className="mb-3">
-          <Form.Label>How many minutes?</Form.Label>
-          <Form.Control type="duration" placeholder="" />
-        </Form.Group>
-        <Col xs="auto" className="my-1">
-          <Button type="submit">Submit</Button>
-        </Col>
-      </Form>
+          <Form.Group className="mb-3">
+            <Form.Label>How many minutes?</Form.Label>
+            <Form.Control type="duration" placeholder="" />
+          </Form.Group>
+          <Col xs="auto" className="my-1">
+            <Button variant="secondary" type="submit">
+              Start
+            </Button>
+          </Col>
+        </Form>
+      </div>
     </div>
   );
 };
