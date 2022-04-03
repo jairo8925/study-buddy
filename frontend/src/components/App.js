@@ -24,23 +24,28 @@ const App = () => {
   return (
     <div
       style={{
-        marginTop: '8px',
         fontFamily: 'Bree Serif',
         userSelect: 'none',
         color: '#373737',
       }}
     >
-      <Container>
-        <Row>
-          <Col>
-            <h1 style={{ fontSize: '27px' }}>study buddy</h1>
-          </Col>
-          <Col>
-            <Clock />
-          </Col>
-        </Row>
-      </Container>
-      <hr style={{ color: '#373737', opacity: '100%', marginTop: '5px' }} />
+      <div
+        style={{
+          backgroundColor: '#C2D9CD',
+        }}
+      >
+        <Container>
+          <Row>
+            <Col>
+              <h1 style={{ fontSize: '27px' }}>study buddy</h1>
+            </Col>
+            <Col>
+              <Clock />
+            </Col>
+          </Row>
+        </Container>
+        <hr style={{ color: '#373737', opacity: '100%', margin: 0 }} />
+      </div>
       {busy ? (
         <Study task={task} duration={duration} onFinish={onFinish} />
       ) : (
