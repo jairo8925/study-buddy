@@ -11,3 +11,6 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.distracted :hover{
+  font-weight: 900;
+}

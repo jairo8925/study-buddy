@@ -25,6 +25,7 @@ const App = () => {
       secondsFocused,
       secondsDistracted,
       timeStarted,
+      new Date(),
     ];
     setResults([...results, res]);
     setLastResult(res);
