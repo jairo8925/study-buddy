@@ -5,14 +5,18 @@ import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Clock from './Clock';
+import SummaryList from './SummaryList';
 
 const App = () => {
   const [busy, setBusy] = useState(false);
   const [task, setTask] = useState('');
   const [duration, setDuration] = useState('');
+  const [results, setResults] = useState([]);
 
-  const onFinish = () => {
+  const onFinish = (secondsFocused, secondsDistracted) => {
     setBusy(false);
+    const res = [task, duration, secondsFocused, secondsDistracted];
+    setResults([...results, res]);
   };
 
   const onTaskSubmit = (taskInput, durationInput) => {
@@ -49,7 +53,10 @@ const App = () => {
       {busy ? (
         <Study task={task} duration={duration} onFinish={onFinish} />
       ) : (
-        <Prompt onTaskSubmit={onTaskSubmit} />
+        <div>
+          <Prompt onTaskSubmit={onTaskSubmit} />
+          <SummaryList results={results} />
+        </div>
       )}
     </div>
   );
