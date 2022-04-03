@@ -1,12 +1,17 @@
 import React from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
-import SummaryList from './SummaryList';
+import muse from '../apis/muse';
 
 const Prompt = ({ onTaskSubmit }) => {
   const onClickSubmit = (e) => {
+    startFocus();
     e.preventDefault();
     onTaskSubmit(e.target[0].value, e.target[1].value);
   };
+
+  const startFocus = async (e) => {
+    const response = await muse.get('/start_focus');
+  }
 
   return (
     <div

@@ -13,7 +13,7 @@ const Study = ({ task, duration, onFinish }) => {
   const beats = useRef(new Audio('beats.mp3'));
 
   const callMuse = useCallback(async () => {
-    const { data } = await muse.get('/focus');
+    const { data } = await muse.get('/get_focus');
     setFocused(data.state);
   }, []);
 
@@ -30,7 +30,6 @@ const Study = ({ task, duration, onFinish }) => {
       if (focused) {
         setSecondsFocused(secondsFocused + 5);
       } else {
-        console.log(5);
         setSecondsDistracted(secondsDistracted + 5);
       }
     }, 5000);
