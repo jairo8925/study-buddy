@@ -5,7 +5,7 @@ const Task = ({ task, duration, onTaskFinish }) => {
   const [finished, setFinished] = useState(false);
 
   useEffect(() => {
-    const interval = setInterval(() => setTime(time - 1), 2000);
+    const interval = setInterval(() => setTime(time - 1), 60000);
     if (time <= 0) {
       setFinished(true);
     }

@@ -18,10 +18,6 @@ url = "http://127.0.0.1:5000/focus"
 
 data = {"focus": False}
 
-def post():
-    #requests.post(url, json={"focus": focus})
-    Timer(5, post).start()
-
 def connect_and_use():
     """ 1. CONNECT TO EEG STREAM """
     # Search for active LSL stream
@@ -100,7 +96,7 @@ def connect_and_use():
         y_hat = BCIw.test_classifier(classifier,
                                         feat_vector.reshape(1, -1), mu_ft,
                                         std_ft)
-                                        
+
         data["focus"] = bool(y_hat)
         print(data["focus"])
 

@@ -19,7 +19,7 @@ const Study = ({ task, duration, onFinish }) => {
 
   useEffect(() => {
     callMuse();
-    const interval = setInterval(() => callMuse(), 5000);
+    const interval = setInterval(() => callMuse(), 1000);
     return () => {
       clearInterval(interval);
     };
