@@ -26,7 +26,7 @@ const SummaryList = ({ results }) => {
   return (
     <div
       style={{
-        margin: '50px 280px 20px 280px',
+        margin: '30px 280px 20px 280px',
         backgroundColor: '#f9f6f2',
         border: '2px solid #434C56',
       }}
