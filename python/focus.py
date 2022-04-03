@@ -102,6 +102,7 @@ def connect_and_use():
                                         std_ft)
                                         
         data["focus"] = bool(y_hat)
+        print(data["focus"])
 
 # Workflow
 
