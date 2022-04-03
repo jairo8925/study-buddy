@@ -6,23 +6,32 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Clock from './Clock';
 import SummaryList from './SummaryList';
+import SummaryItem from './SummaryItem';
 
 const App = () => {
   const [busy, setBusy] = useState(false);
   const [task, setTask] = useState('');
   const [duration, setDuration] = useState('');
   const [results, setResults] = useState([]);
+  const [lastResult, setLastResult] = useState([]);
+  const [show, setShow] = useState(false);
 
   const onFinish = (secondsFocused, secondsDistracted) => {
     setBusy(false);
     const res = [task, duration, secondsFocused, secondsDistracted];
     setResults([...results, res]);
+    setLastResult(res);
+    setShow(true);
   };
 
   const onTaskSubmit = (taskInput, durationInput) => {
     setBusy(true);
     setTask(taskInput);
     setDuration(durationInput);
+  };
+
+  const handleClose = () => {
+    setShow(false);
   };
 
   return (
@@ -56,6 +65,13 @@ const App = () => {
         <div>
           <Prompt onTaskSubmit={onTaskSubmit} />
           <SummaryList results={results} />
+          {show && (
+            <SummaryItem
+              setModal={show}
+              handleClose={handleClose}
+              result={lastResult}
+            />
+          )}
         </div>
       )}
     </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Col } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
 const SummaryList = ({ results }) => {
   const items = (res) => {
