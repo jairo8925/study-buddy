@@ -17,8 +17,7 @@ const SummaryList = ({ results }) => {
               .toLowerCase()}
           </td>
           <td>{task[1]}</td>
-          <td>{task[2]}</td>
-          <td>{task[3]}</td>
+          <td>{(100.0 * task[2]) / (task[2] + task[3])}%</td>
         </tr>
       );
     });
@@ -40,8 +39,7 @@ const SummaryList = ({ results }) => {
               <th>Task</th>
               <th>Time Started</th>
               <th>Duration (min)</th>
-              <th>Time focused (s)</th>
-              <th>Time not focused (s)</th>
+              <th>Percentage focused</th>
             </tr>
           </thead>
           <tbody>{items(results)}</tbody>

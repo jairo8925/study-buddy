@@ -36,15 +36,16 @@ const SummaryItem = ({ setModal, handleClose, result }) => {
             </i>
           </p>
           <p>
-            Duration: <i style={{ color: '#2f4f4f' }}>{result[1]} minutes</i>
+            Duration:{' '}
+            <i style={{ color: '#2f4f4f' }}>
+              {result[1]} {result[1] === 1 ? 'minute' : 'minutes'}
+            </i>
           </p>
           <p>
-            Time Focused:{' '}
-            <i style={{ color: '#2f4f4f' }}>{result[2]} seconds</i>
-          </p>
-          <p>
-            Time Not Focused:{' '}
-            <i style={{ color: '#2f4f4f' }}>{result[3]} seconds</i>
+            Percentage Focused:{' '}
+            <i style={{ color: '#2f4f4f' }}>
+              {(100.0 * result[2]) / (result[2] + result[3])}%
+            </i>
           </p>
         </Modal.Body>
         <Modal.Footer>

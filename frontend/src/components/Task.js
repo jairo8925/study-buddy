@@ -15,7 +15,7 @@ const Task = ({ task, duration, onTaskFinish }) => {
   }, [time]);
 
   if (finished) {
-    onTaskFinish();
+    onTaskFinish(time);
     return <p className="text-lg-center">{task} &bull; Finished!</p>;
   }
 

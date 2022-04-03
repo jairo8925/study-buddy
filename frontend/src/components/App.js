@@ -17,11 +17,11 @@ const App = () => {
   const [show, setShow] = useState(false);
   const [timeStarted, setTimeStarted] = useState(new Date());
 
-  const onFinish = (secondsFocused, secondsDistracted) => {
+  const onFinish = (secondsFocused, secondsDistracted, timeElapsed = -1) => {
     setBusy(false);
     const res = [
       task,
-      duration,
+      timeElapsed === -1 ? duration : timeElapsed,
       secondsFocused,
       secondsDistracted,
       timeStarted,

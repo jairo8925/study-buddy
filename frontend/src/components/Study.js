@@ -32,7 +32,7 @@ const Study = ({ task, duration, onFinish }) => {
       } else {
         setSecondsDistracted(secondsDistracted + 1);
       }
-      console.log("hi");
+      console.log('hi');
     }, 1000);
     return () => {
       clearInterval(interval);
@@ -41,6 +41,15 @@ const Study = ({ task, duration, onFinish }) => {
 
   const onTaskFinish = () => {
     onFinish(secondsFocused, secondsDistracted);
+    beats.current.pause();
+  };
+
+  const OnEarlyTaskFinish = () => {
+    onFinish(
+      secondsFocused,
+      secondsDistracted,
+      Math.ceil((secondsDistracted + secondsFocused) / 60)
+    );
     beats.current.pause();
   };
 
@@ -78,7 +87,7 @@ const Study = ({ task, duration, onFinish }) => {
         </Button>
         <Button
           variant="outline-danger"
-          onClick={onTaskFinish}
+          onClick={OnEarlyTaskFinish}
           style={{ marginLeft: '10px' }}
         >
           end
