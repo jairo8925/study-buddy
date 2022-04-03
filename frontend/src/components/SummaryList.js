@@ -16,6 +16,15 @@ const SummaryList = ({ results }) => {
               })
               .toLowerCase()}
           </td>
+          <td>
+            {task[5]
+              .toLocaleString('en-US', {
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true,
+              })
+              .toLowerCase()}
+          </td>
           <td>{task[1]}</td>
           <td>{(100.0 * task[2]) / (task[2] + task[3])}%</td>
         </tr>
@@ -38,6 +47,7 @@ const SummaryList = ({ results }) => {
             <tr>
               <th>Task</th>
               <th>Time Started</th>
+              <th>Time Ended</th>
               <th>Duration (min)</th>
               <th>Percentage focused</th>
             </tr>

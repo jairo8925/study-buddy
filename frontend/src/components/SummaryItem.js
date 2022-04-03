@@ -36,6 +36,18 @@ const SummaryItem = ({ setModal, handleClose, result }) => {
             </i>
           </p>
           <p>
+            Time Ended:{' '}
+            <i style={{ color: '#2f4f4f' }}>
+              {result[5]
+                .toLocaleString('en-US', {
+                  hour: 'numeric',
+                  minute: 'numeric',
+                  hour12: true,
+                })
+                .toLowerCase()}{' '}
+            </i>
+          </p>
+          <p>
             Duration:{' '}
             <i style={{ color: '#2f4f4f' }}>
               {result[1]} {result[1] === 1 ? 'minute' : 'minutes'}
