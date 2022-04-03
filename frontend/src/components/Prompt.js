@@ -1,7 +1,6 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
+import { Form, Col, Button } from 'react-bootstrap';
+import SummaryList from './SummaryList';
 
 const Prompt = ({ onTaskSubmit }) => {
   const onClickSubmit = (e) => {
@@ -12,7 +11,7 @@ const Prompt = ({ onTaskSubmit }) => {
   return (
     <div
       style={{
-        margin: '50px 300px 20px 300px',
+        margin: '50px 280px 20px 280px',
         backgroundColor: '#f9f6f2',
         border: '2px solid #434C56',
       }}

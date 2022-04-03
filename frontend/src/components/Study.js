@@ -8,11 +8,13 @@ const Study = ({ task, duration, onFinish }) => {
   // Data we get from the muse (Focused or not focused)
   const [focused, setFocused] = useState(false);
   const [paused, setPaused] = useState(true);
+  const [secondsFocused, setSecondsFocused] = useState(0);
+  const [secondsDistracted, setSecondsDistracted] = useState(0);
   const beats = useRef(new Audio('beats.mp3'));
 
   const callMuse = useCallback(async () => {
-    const response = await muse.get('/focus');
-    setFocused(response.data.state);
+    const { data } = await muse.get('/focus');
+    setFocused(data.state);
   }, []);
 
   useEffect(() => {
@@ -23,8 +25,23 @@ const Study = ({ task, duration, onFinish }) => {
     };
   }, [callMuse]);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (focused) {
+        setSecondsFocused(secondsFocused + 5);
+      } else {
+        console.log(5);
+        setSecondsDistracted(secondsDistracted + 5);
+      }
+    }, 5000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [focused, secondsDistracted, secondsFocused]);
+
   const onTaskFinish = () => {
-    onFinish();
+    onFinish(secondsFocused, secondsDistracted);
+    beats.current.pause();
   };
 
   const onBeatsClick = () => {
