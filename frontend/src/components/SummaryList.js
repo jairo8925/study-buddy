@@ -26,7 +26,7 @@ const SummaryList = ({ results }) => {
               .toLowerCase()}
           </td>
           <td>{task[1]}</td>
-          <td>{(100.0 * task[2]) / (task[2] + task[3])}%</td>
+          <td>{Math.round((100.0 * task[2]) / (task[2] + task[3]))}%</td>
         </tr>
       );
     });

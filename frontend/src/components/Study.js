@@ -61,9 +61,9 @@ const Study = ({ task, duration, onFinish }) => {
     <div style={{ marginTop: '35px' }}>
       <h4 className="text-center">
         you are currently{' '}
-        <b className={focused ? 'focused' : 'distracted'}>
+        <span className={focused ? 'focused' : 'distracted'}>
           {focused ? 'focused' : 'not focused'}
-        </b>
+        </span>
       </h4>
       <div className="text-center">
         <Image

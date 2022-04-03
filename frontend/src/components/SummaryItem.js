@@ -56,7 +56,7 @@ const SummaryItem = ({ setModal, handleClose, result }) => {
           <p>
             Percentage Focused:{' '}
             <i style={{ color: '#2f4f4f' }}>
-              {(100.0 * result[2]) / (result[2] + result[3])}%
+              {Math.round((100.0 * result[2]) / (result[2] + result[3]))}%
             </i>
           </p>
         </Modal.Body>
