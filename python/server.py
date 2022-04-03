@@ -8,8 +8,7 @@ data = { "focus": True }
 
 @app.route("/index")
 def index():
-    focus = True
-    session["focus"] = focus
+    data["focus"] = True
 
 @app.route('/focus', methods=['GET', 'POST'])
 def focus_state():
