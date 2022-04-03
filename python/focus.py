@@ -3,24 +3,20 @@ from copyreg import pickle
 import numpy as np  # Module that simplifies computations on matrices
 import matplotlib.pyplot as plt  # Module used for plotting
 from pylsl import StreamInlet, resolve_byprop  # Module to receive EEG data
-
 import bci_workshop_tools as BCIw  # Our own functions for the workshop
 from pickle import dump, load
 import joblib
+import requests
+import threading
+
 model_fileName = "model.pkl"
 mu_fileName = "mu.pkl"
 std_fileName = "std.pkl"
 classifier = joblib.load(model_fileName)
 mu_ft = load(open(mu_fileName, 'rb'))
 std_ft = load(open(std_fileName, 'rb'))
+url = "http://127.0.0.1:5000/focus"
 
-# Flask Setup
-app = Flask(__name__)
-
-def get_focus():
-    return focus
-
-focus = True
 
 """ 1. CONNECT TO EEG STREAM """
 # Search for active LSL stream
@@ -85,6 +81,7 @@ decision_buffer = np.zeros((30, 1))
 # print('Press Ctrl-C in the console to break the while loop.')
 
 # try:
+
 while True:
 
     """ 3.1 ACQUIRE DATA """
@@ -112,6 +109,7 @@ while True:
                                     std_ft)
                                     
     focus = bool(y_hat)
+    result = requests.post(url, json={"focus": focus})
     
     # print(y_hat) #prints 1 or 0 based on decision
 
