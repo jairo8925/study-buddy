@@ -8,6 +8,7 @@ from pickle import dump, load
 import joblib
 import requests
 import threading
+from time import sleep
 
 model_fileName = "model.pkl"
 mu_fileName = "mu.pkl"
@@ -17,6 +18,10 @@ mu_ft = load(open(mu_fileName, 'rb'))
 std_ft = load(open(std_fileName, 'rb'))
 url = "http://127.0.0.1:5000/focus"
 
+
+def post(f:bool):
+    sleep(10)
+    requests.post(url, json={"focus": f})
 
 """ 1. CONNECT TO EEG STREAM """
 # Search for active LSL stream
@@ -109,7 +114,8 @@ while True:
                                     std_ft)
                                     
     focus = bool(y_hat)
-    result = requests.post(url, json={"focus": focus})
+    print(focus)
+    post(focus)
     
     # print(y_hat) #prints 1 or 0 based on decision
 
