@@ -205,7 +205,7 @@ def train_classifier(feature_matrix_0, feature_matrix_1, algorithm='SVM'):
 
     # Train SVM using default parameters
     clf = svm.SVC()
-    clf.fit(X, y.ravel()) #ravel flattens array
+    clf.fit(X, y) #ravel flattens array
 
     # Visualize decision boundary
 #    plot_classifier_training(clf, X, y, features_to_plot=[0, 1])

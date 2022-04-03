@@ -117,6 +117,7 @@ while True:
                                     std_ft)
                                     
     focus = bool(y_hat)
+    # print(focus)
     
     # print(y_hat) #prints 1 or 0 based on decision
 
