@@ -6,7 +6,7 @@ import './Study.css';
 
 const Study = ({ task, duration, onFinish }) => {
   // Data we get from the muse (Focused or not focused)
-  const [focused, setFocused] = useState(true);
+  const [focused, setFocused] = useState(false);
   const [paused, setPaused] = useState(true);
   const [secondsFocused, setSecondsFocused] = useState(0);
   const [secondsDistracted, setSecondsDistracted] = useState(0);
