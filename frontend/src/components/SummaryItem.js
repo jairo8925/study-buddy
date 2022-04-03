@@ -60,15 +60,6 @@ const SummaryItem = ({ setModal, handleClose, result }) => {
             </i>
           </p>
         </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={handleClose}
-            style={{ fontSize: '13px' }}
-          >
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

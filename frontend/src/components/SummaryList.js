@@ -35,14 +35,14 @@ const SummaryList = ({ results }) => {
   return (
     <div
       style={{
-        margin: '30px 280px 20px 280px',
+        margin: '30px 500px 20px 500px',
         backgroundColor: '#f9f6f2',
         border: '2px solid #434C56',
       }}
     >
-      <div style={{ padding: '30px' }}>
-        <h5>Tasks Summary</h5>
-        <Table striped bordered hover style={{ fontSize: '10px' }}>
+      <div style={{ padding: '34px' }}>
+        <h3>Tasks Summary</h3>
+        <Table striped bordered hover style={{ fontSize: '16px' }}>
           <thead>
             <tr>
               <th>Task</th>

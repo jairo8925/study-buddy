@@ -23,63 +23,65 @@ const Prompt = ({ onTaskSubmit }) => {
   const connectMuse = async (e) => {
     await muse.post('/connect_muse', null, {
       params: {
-        id: e
-      }
+        id: e,
+      },
     });
   };
 
-  const onConnectSubmit = (e) =>{
-      const id = e.target[0].value;
-      e.preventDefault();
-      connectMuse(id);
-  }
+  const onConnectSubmit = (e) => {
+    const id = 'Muse-' + e.target[0].value;
+    e.preventDefault();
+    connectMuse(id);
+  };
   return (
     <div>
-    <div style={{
-      margin: '40px 280px 20px 280px',
-      backgroundColor: '#f9f6f2',
-      border: '2px solid #434C56',
-    }}>
-    <div style={{ padding: '30px' }}>
-    <Form onSubmit={onConnectSubmit}>
-    <Form.Group className="mb-3">
-            <Form.Label>Muse ID</Form.Label>
-            <Form.Control type="id" placeholder=""/>
-          </Form.Group>
-          <Col xs="auto" className="my-1">
-            <Button variant="secondary" type="submit">
-              Connect
-            </Button>
-          </Col>
-    </Form>
-    </div>
-    </div>
-    <div
-      style={{
-        margin: '40px 280px 20px 280px',
-        backgroundColor: '#f9f6f2',
-        border: '2px solid #434C56',
-      }}
-    >
-      <div style={{ padding: '30px' }}>
-        <Form onSubmit={onClickSubmit}>
-          <Form.Group className="mb-3">
-            <Form.Label>What's your task?</Form.Label>
-            <Form.Control type="task" placeholder="" />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>How many minutes?</Form.Label>
-            <Form.Control type="duration" placeholder="" />
-          </Form.Group>
-          <Col xs="auto" className="my-1">
-            <Button variant="secondary" type="submit">
-              Start
-            </Button>
-          </Col>
-        </Form>
+      <div
+        style={{
+          margin: '40px 500px 20px 500px',
+          backgroundColor: '#f9f6f2',
+          border: '2px solid #434C56',
+        }}
+      >
+        <div style={{ padding: '30px' }}>
+          <Form onSubmit={onConnectSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Muse ID</Form.Label>
+              <Form.Control type="id" placeholder="####" />
+            </Form.Group>
+            <Col xs="auto" className="my-1">
+              <Button variant="secondary" type="submit">
+                Connect
+              </Button>
+            </Col>
+          </Form>
+        </div>
       </div>
-    </div>
+      <div
+        style={{
+          margin: '30px 500px 20px 500px',
+          backgroundColor: '#f9f6f2',
+          border: '2px solid #434C56',
+        }}
+      >
+        <div style={{ padding: '30px' }}>
+          <Form onSubmit={onClickSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>What's your task?</Form.Label>
+              <Form.Control type="task" placeholder="" />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>How many minutes?</Form.Label>
+              <Form.Control type="duration" placeholder="" />
+            </Form.Group>
+            <Col xs="auto" className="my-1">
+              <Button variant="secondary" type="submit">
+                Start
+              </Button>
+            </Col>
+          </Form>
+        </div>
+      </div>
     </div>
   );
 };

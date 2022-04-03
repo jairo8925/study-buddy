@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Prompt from './Prompt';
 import Study from './Study';
 import Row from 'react-bootstrap/Row';
+import Image from 'react-bootstrap/Image';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Clock from './Clock';
@@ -56,9 +57,14 @@ const App = () => {
           backgroundColor: '#C2D9CD',
         }}
       >
-        <Container>
-          <Row>
-            <Col>
+        <Container
+          style={{ marginRight: '0', marginLeft: '0', maxWidth: '100%' }}
+        >
+          <Row className="align-items-center">
+            <Col sm={1}>
+              <Image src="logo.png" style={{ maxWidth: '5rem' }}></Image>
+            </Col>
+            <Col sm={5} style={{ paddingLeft: '0' }}>
               <h1 style={{ fontSize: '27px' }}>study buddy</h1>
             </Col>
             <Col>
