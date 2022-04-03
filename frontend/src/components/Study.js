@@ -32,7 +32,6 @@ const Study = ({ task, duration, onFinish }) => {
       } else {
         setSecondsDistracted(secondsDistracted + 1);
       }
-      console.log('hi');
     }, 1000);
     return () => {
       clearInterval(interval);
